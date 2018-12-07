@@ -1,0 +1,115 @@
+[
+    {
+        "id": "38a573ff.eed98c",
+        "type": "tab",
+        "label": "Chocolate Box",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9a2f0894.eab678",
+        "type": "mqtt out",
+        "z": "38a573ff.eed98c",
+        "name": "Chocolate Box",
+        "topic": "box_open",
+        "qos": "0",
+        "retain": "",
+        "broker": "909537b6.2773d",
+        "x": 825.5,
+        "y": 112,
+        "wires": []
+    },
+    {
+        "id": "f361216a.204b3",
+        "type": "alexa-local",
+        "z": "38a573ff.eed98c",
+        "devicename": "ChocolateBox",
+        "inputtrigger": false,
+        "x": 176.5,
+        "y": 120,
+        "wires": [
+            [
+                "94fb9c4d.76d71"
+            ]
+        ]
+    },
+    {
+        "id": "94fb9c4d.76d71",
+        "type": "function",
+        "z": "38a573ff.eed98c",
+        "name": "Open",
+        "func": "msg.payload = msg.on;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 363.5,
+        "y": 120,
+        "wires": [
+            [
+                "9a2f0894.eab678",
+                "1f6a6423.036eac"
+            ]
+        ]
+    },
+    {
+        "id": "1f6a6423.036eac",
+        "type": "delay",
+        "z": "38a573ff.eed98c",
+        "name": "Delay 20 sec",
+        "pauseType": "delay",
+        "timeout": "20",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 513.5,
+        "y": 303,
+        "wires": [
+            [
+                "3c9c3c29.c92d24"
+            ]
+        ]
+    },
+    {
+        "id": "3c9c3c29.c92d24",
+        "type": "template",
+        "z": "38a573ff.eed98c",
+        "name": "Close",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "false",
+        "output": "json",
+        "x": 713.5,
+        "y": 309,
+        "wires": [
+            [
+                "9a2f0894.eab678"
+            ]
+        ]
+    },
+    {
+        "id": "909537b6.2773d",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "node-red-01",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": ""
+    }
+]
